@@ -1,4 +1,6 @@
-# BitBurner VIM Project
+# BurnedBits - VIM
+
+A ViM plugin for the BitBurner game to develop locally using ViM and upload to the server.
 
 ## Overview
 
