@@ -15,4 +15,5 @@ let g:loadedBurnedBitsPlugin = 1
 command! -nargs=0 BitBurnerVersion call burnedbits#Version()
 command! -nargs=? BitBurnerAuth call burnedbits#AuthToken(<f-args>)
 command! -nargs=0 BitBurnerClearAuth call burnedbits#ClearAuthToken()
+command! -nargs=0 BitBurnerUploadFile call burnedbits#UploadFile()
 

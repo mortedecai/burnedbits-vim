@@ -61,3 +61,10 @@ function! burnedbits#HasGoInstalled()
 endfunction
 
 
+" Attemps to upload a file
+function! burnedbits#UploadFile(...)
+  let l:filePath = expand('<sfile>:p:h')
+  let l:cmd = 'go run ' . l:filePath . '/burner.go'
+  let s:output = substitute(system(l:cmd), '\n\+$', '', '')
+  echo s:output ": " expand("%:p")
+endfunction
