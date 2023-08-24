@@ -1,5 +1,6 @@
 " Script auth token
 let s:authToken = ""
+let s:hasGo = -1
 
 " Print the version for the BitBurner plugin
 function! burnedbits#Version(...)
@@ -8,6 +9,9 @@ endfunction
 
 " Set an auth token
 function! burnedbits#AuthToken(...)
+  if !burnedbits#ValidateGoInstall()
+      return
+  endif
   if a:0 == 0
       if s:authToken == ""
           echo "Token has not been set"
@@ -27,6 +31,33 @@ endfunction
 
 " Clear an auth token
 function! burnedbits#ClearAuthToken()
+  if !burnedbits#ValidateGoInstall()
+      return
+  endif
   let s:authToken = ""
   echo "Token has been cleared"
 endfunction
+
+" Runs a check for go if it has not been done
+" Prints an error message if it is not.
+function! burnedbits#ValidateGoInstall()
+  if s:hasGo == -1
+      let s:hasGo = burnedbits#HasGoInstalled()
+  endif
+  if s:hasGo == 0
+      echo "Unable to find Go; install go to continue"
+  endif
+  return s:hasGo
+endfunction
+
+" Checks if Go is installed.
+" Returns 0 for false, 1 for true
+function! burnedbits#HasGoInstalled()
+  let s:goLocation = substitute(system('which go'), '\n\+$', '', '')
+  if s:goLocation == "go not found"
+        return 0
+  endif
+  return 1
+endfunction
+
+
