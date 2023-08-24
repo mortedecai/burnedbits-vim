@@ -13,3 +13,6 @@ let g:loadedBurnedBitsPlugin = 1
 
 " Exposes the plugin's functions for use as commands in Vimj
 command! -nargs=0 BitBurnerVersion call burnedbits#Version()
+command! -nargs=? BitBurnerAuth call burnedbits#AuthToken(<f-args>)
+command! -nargs=0 BitBurnerClearAuth call burnedbits#ClearAuthToken()
+
